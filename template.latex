@@ -246,6 +246,11 @@ $endif$
 	\renewcommand{\footrulewidth}{0pt} % to remove line on footer
 
                 }
+                \usepackage{caption}
+                \captionsetup{%
+   figurename=Fig.,
+   tablename=tab.
+}
 
 \begin{document}
 
