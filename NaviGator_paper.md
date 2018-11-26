@@ -1,34 +1,52 @@
 ---
-title: "NaviGator AMS"
+title: "NaviGator AMS 2018"
 date: "December 2018"
 numbersections: yes
-authors:
-    - name: Daniel Volya
-    - name: Matthew Griessler
-    - name: Kevin Allen
-    - name: Kipling Cohen
-    - name: Alan Albritton
-    - name: Nicholas Suhlman
-    - name: David Zobel
-    - name: Juan Mejia
-    - name: Rosemond Fabien
-    - name: Daniel Olis
-    - name: Marshall Rawson
-    - name: Jaxon Brown
-    - name: Ria Pendon
-    - name: Marquez Jones
-    - name: Scarlet Seymour
-    - name: Dr. Eric Schwartz
-    - name: Dr. Carl Crane
-    - name: Dr. Ira Hill
-    - name: Shannon Ridgeway
+author:
+    - name: Daniel Volya,
+    - name: Matthew Griessler,
+    - name: Kevin Allen,
+    - name: Kipling Cohen,
+    - name: Alan Albritton,
+    - name: Nicholas Suhlman,
+    - name: David Zobel,
+    - name: Juan Mejia,
+    - name: Rosemond Fabien,
+    - name: Daniel Olis,
+    - name: Marshall Rawson,
+    - name: Jaxon Brown,
+    - name: Ria Pendon,
+    - name: Marquez Jones,
+    - name: Scarlet Seymour,
+    - name: Dr. Eric Schwartz,
+    - name: Dr. Carl Crane,
+    - name: Dr. Ira Hill,
+    - name: and Shannon Ridgeway
+lang: en
+babel-lang: english
 abstract:
-    NaviGator ASV is a fully autonomous surface vehicle (ASV) built to compete in the Association for Unmanned Vehicle Systems International (AUVSI) Foundation’s 2016 Maritime RobotX Challenge in Oahu, Hawaii. The NaviGator ASV is part of a larger group of collaborative autonomous aerial, surface, and subsurface vehicles known as the NaviGator Autonomous Maritime System (AMS). This paper describes the NaviGator ASV’s structural design, propulsion, power system, electrical design, software infrastructure, outreach efforts, and approach to completing the challenges presented in the 2016 Maritime RobotX Challenge.
+    NaviGator ASV is a fully autonomous surface vehicle (ASV) built to compete in the Association for Unmanned Vehicle Systems International (AUVSI) Foundation’s 2018 Maritime RobotX Challenge in Oahu, Hawaii. The NaviGator ASV is part of a larger group of collaborative autonomous aerial, surface, and subsurface vehicles known as the NaviGator Autonomous Maritime System (AMS). This paper describes the NaviGator ASV’s structural design, propulsion, power system, electrical design, software infrastructure, and approach to completing the challenges presented in the 2018 Maritime RobotX Challenge.
 ---
 
 # Introduction
 
-sds
+The University of Florida’s (UF) Team NaviGator AMS is a
+multidisciplinary group composed of undergraduate and
+graduate students from the departments of Electrical and
+Computer Engineering and Mechanical Engineering. This
+project is primarily sponsored by the Machine Intelligence
+Lab (MIL), which has nearly 20 years of experience in
+competing in the AUVSI Foundation’s robotics competitions,
+including numerous championships in the RoboSub and
+RoboBoat Competitions. Due to the larger scale of the
+Maritime RobotX Challenge, MIL has partnered with the
+Center for Intelligent Machines and Robotics (CIMAR), a lab
+that has competed in three DARPA challenges and has
+extensive experience with developing highly intelligent large-
+scale autonomous vehicles. Between MIL’s experience in
+autonomous maritime systems design and CIMAR’s
+experience in software architecture design, Team NaviGator
+AMS puts forth a competitive vehicle for the Maritime RobotX Challenge.
 
 # Vehicle Design
 
@@ -44,12 +62,9 @@ that knowledge was integrated to improve on the designs.
 The mechanical platform used for the NaviGator ASV is a
 modified WAM-V research vessel developed by Marine
 Advanced Research. Several of the mechanical modifications
-that the team has made will be detailed in this section. A
-computer-aided design (CAD) render of the NaviGator ASV is
-shown in Fig 1.
+that the team has made will be detailed in this section. 
 
 ### Propulsion
-
 NaviGator ASV’s propulsion system began
 as two forward-facing stern thrusters, providing the ASV with
 a skid-steer configuration. After a short time of testing, it
@@ -71,20 +86,15 @@ just three thrusters, saving the run. Moreover, during the 2016 RobotX Maritime 
 this configuration is that the fixed angles of the thrusters
 means that it is not particularly efficient moving in any
 direction. However, as was demonstrated in 2016, for the tasks that the Navigator ASV is
-designed to perform, maneuverability is significantly more
-important than efficiency.
+designed to perform, maneuverability provides a significant advantage in maintaining stability.
+
+![Auto-deploy system for thrusters \label{auto_deploy}](./fig/auto_deploy.png)
 
 Mounting the thrusters posed many challenges and required
 several design iterations, especially for the bow thrusters. For
 the ASV to be deployed from a trailer, the bow thrusters had
 to be either removed or raised during deployment so they
-would not collide with the trailer structure. The transom
-clamps on the trolling motors accommodated this function. 3D
-printed polycarbonate clamping blocks that interfaced with the
-clamps on the trolling motors kept them fixed in place. While
-the mounts held the motors securely, the 3D printed parts
-began to crack and eventually failed. To solve this issue, the
-clamping blocks were machined from aluminum.
+would not collide with the trailer structure. Thus, we implemented a student designed auto-deploy system for the thrusters (Fig. \ref{auto_deploy}), which also aided in the efficiency of deploying NaviGator. The system uses two pneumatic linear actuators to rotate the thruster about the transom mount and to lock the thruster in place. The main actuator is mounted in a tandem style to allow it to pivot as the system rotates.  To retract the thruster, the locking actuator extends and moves the spring-loaded locking pin. The main actuator then retracts pulling the thruster to an upward position. The air pressure to the locking actuator is then released causing the locking pin to fall into a lock position. The air pressure is then released form the main actuator as it no longer needed to hold the thruster in place. To deploy the thruster to do the same process but in reverse. This system not only saves time but also makes it so that only one person has to get in the water to pull the boat onto or off of the shore.
 
 ### Sensor Mast
 
@@ -174,56 +184,44 @@ into the chamber, it is withheld at the minimum distance from
 the wheels to reduce the amount of time it takes to fire. In
 order to prevent premature firing, a retention lip is used.
 
-### Ring Challenge System
-
 ## Electrical System
 
-Robustness and simplicity were the primary motivating
-factors behind the design of the NaviGator ASV’s electrical
-system. The team focused on these aspects in order to get a
-testable system built quickly and minimize any downtime due
-to electrical failure.
+The design goal for the 2016 NaviGator platform was robustness and simplicity. Having achieved those goals for the 2018 competition the design goal was to improve upon the 2016 system.
 
-### Power System
-
-The salient features of the power system
-are the dual battery power supply and the power merge board.
-The NaviGator ASV’s power requirements surpassed those of
+### Power Distribution
+The 2018 NaviGator retains the dual battery power supply and the power merge board from the 2016 system. NaviGator remains MIL’s biggest project in terms of power required. In 2016 the team designed a power system using two Torqueedo Power 26-104 batteries. The 2016 NaviGator did not provide any feedback on how much current was being drawn from each battery at a given point in time and the voltage level sensing of each battery could be improved. In 2018 NaviGator improved upon the 2016 power system to provide moment to moment, accurate, current and voltage sensing. After the current and voltage sense device there are two power paths that extend from each battery. The high power path connects each battery to two thrusters through fuses. The low power path connects each battery to NaviGator’s sense and compute devices through the power merge board.
 
 ### Power merge board
+The power merge board is a student-designed printed circuit board assembly (PCBA). It uses Texas Instruments LM5050-2 ideal diode controllers to balance and parallel the two batteries into a single 24V rail to power NaviGator’s sense and compute devices. The main benefits derived from the power merge board are two-fold. The everyday benefit is that NaviGator’s batteries can be switched out without the computer and networking equipment turning off. The fault tolerant benefit is that if a battery fails, NaviGator retains control and can be commanded. One of MIL’s strengths is that parts of MIL’s vehicles are designed to be translatable to other vehicles in the lab. This is the third vehicle that has used this power merge board design. The PCBA was designed for PropaGator 1 and then used on PropaGator 2. Both PropaGators have competed in the RoboBoat competition.
 
-The power merge board is a
-student-designed printed circuit board assembly (PCBA). It
-uses two Texas Instruments LM5050 High Side OR-ing FET
-controllers as ideal diode rectifiers to balance and parallel the
-two batteries into one rail that supplies four output ports. This
-makes the system more fault tolerant to a failing battery, a
-feature used in normal operation to switch batteries out
-without turning the system off. One of the strengths of MIL is
-the ability to design hardware and software that can be reused
-on other projects and vehicles. This is the third vehicle for
-which this board design has been utilized. The design was
-originally created for PropaGator 1 and then used on
-PropaGator 2, both of which have competed in the RoboBoat
-Competition.
 
 ### Passive sonar
+The ability to track a point source of sound
+in the water is encapsulated into the passive
+sonar pressure vessel. It contains a passive sonar
+amplification and filtering board (Fig. \ref{passive_sonar}),
+necessary power regulation, and USB
+communication. An Analog Digital 4-channel
+Data Acquisition ADC (ADAR7251) is used to
+simultaneously sample, amplify, convert, and
+filter the four incoming signals. The board was
+designed by Sylphase – a startup founded and
+run by a former MIL student – and is capable of
+tracking multiple acoustic sources
+simultaneously, provided they are at different
+frequencies.
+
+![Passive Sonar PCB \label{passive_sonar}](./fig/sylphase_passive_sonar.png)
 
 ### Kill system
 
-The hardware kill system consists of two
-student-designed PCBAs and four off-the-shelf twist to detent
-kill switches. The kill system for the vehicle also has a
-software component. The kill board monitors the status of six
-kill sources. When any of the six sources request a kill, the kill
-board cuts power to the thruster motor controllers. The six kill
-sources are the four off-the-shelf switches that are mounted
-around the vehicle, a remote kill switch, and the computer.
-The remote kill switch operates over a 900 MHz radio link and
-displays the hardware kill status of the vehicle. The kill board
-is also used to control the NaviGator ASV’s indicator lights
-and a siren used to ward off curious watercraft during testing.
+In accordance with the RobotX Kill Switch Specifications, the NaviGator ASV disconnects power to its’ thrusters through an emergency kill system capable of operating independently of the motherboard. Power supplied into the motor controllers first passes through four parallel F7 Series power relays, which are controlled by the Emergency Kill Board. This Kill Board receives power from a 22.2V LiPo battery, independent of the vehicle’s main batteries. A microcontroller monitors the status of the four E-Stop buttons on the WAM-V’s four arms, and deactivates the power relays when these are pressed. Additionally, the Kill Board communicates with the motherboard through a USB connection, constantly relaying the kill switch status and receiving an ongoing “heartbeat” message. Should the motherboard stop sending this heartbeat (indicating software failure) for longer than 5 seconds, the Kill Board will cut power to the thrusters. The Kill Board is also equipped with a Linx NT Series RF transceiver, constantly communicating with another transceiver on the Emergency Controller on a 903.37 MHz carrier frequency. As this transceiver independent of the Wi-Fi connection through the Ubiquiti antenna, the Emergency Controller can kill the power to the thrusters even when the vehicle loses connection to shore. Further, the controller can be used set NaviGator to “emergency control” mode, allowing the user to pilot the vehicle if recovery via shore controls is not available. To cut power, the kill board opens the contacts on the four relays connected to the power on the four motor controllers, cutting power to NaviGator’s actuation systems while the computer remains active. The kill board is also used to control NaviGator’s indicator lights.
 
+### Siren System
+The siren board is a student-designed PCBA that communicates with the computer over the on board, low speed, CAN network. It controls the siren that wards off curious watercraft during testing of NaviGator.
+
+### Current and Voltage Sensing Board
+The current and voltage sense board is a student-designed PCBA that senses the voltage level and current being drawn by each battery moment to moment. The sensed data is sent to the computer over the on board, low speed, CAN network. There is one PCBA installed in line with each battery. By recording the current drawn from each battery and voltage level over time the health of the batteries can be ascertained both for long term battery health and short term determination of when the batteries need to be switched out and charged.
 
 ## Software System
 
@@ -231,7 +229,7 @@ and a siren used to ward off curious watercraft during testing.
 
 The lowest level
 perception service available on the NaviGator ASV is the
-Occupancy Grid Server. Occupancy grids are a twodimensional grid-like representation of the environment
+Occupancy Grid Server. Occupancy grids are a two dimensional grid-like representation of the environment
 generated by the sensor suite available on the ASV. The
 generated map contains both the occupied and unoccupied
 regions in the environment. This information is provided to
@@ -254,8 +252,102 @@ are then accessible to other programs through the use of a list
 of detected objects.
 
 ### Motion Planning
+For a safer and more flexible planner, the team sought out
+an algorithm that can handle strict, well-defined constraints.
+The rapidly-exploring random tree (RRT) algorithm is highly
+efficient for this scenario [@lavalleRapidlyExploringRandomTrees1998]. The algorithm starts with a seed
+node at the ASV’s initial state. It then randomly samples a
+state in the region of navigational interest. A nearness function
+is applied to every node currently in the tree, and then that
+node is extended or steered towards the random state
+following a policy function. The endpoint of that extension is
+added as a new node to the tree only if it is allowable, and the
+algorithm repeats. If an extension, or any intermediate state
+leading up to it, is not allowable, that iteration is simply
+abandoned. Once a node reaches the goal region, the tree is
+efficiently climbed from the goal back to the seed, and is
+classified as one solution to the planning problem. The best of
+the found solutions is defined as the one that takes the least
+amount of time. The goal region is likely to be reached
+because one can bias tree-growth towards it by shaping the
+probability density function from which random states are
+sampled.
+
+![An example of the NaviGator ASV’s RRT planning towards a goal
+region](./fig/path_planning.png)
+
+After selecting the RRT algorithm for safety and flexibility,
+the final step was to integrate the algorithm with a real-time
+system. One of the biggest difficulties in doing this was
+dealing with a highly nonstatic environment. Obstacles
+spontaneously appear when they get in range of the perception
+system. This means that a valid path can suddenly become
+invalid with only seconds to spare. To make efficient use of
+time, the planner should always be planning the next move so
+that the RRT has more time to get a better solution. To handle
+this, the planner had to be made asynchronously interruptible,
+and a lot of plan-reevaluation and crisis-aversion logic had to
+be built in to elegantly deal with spontaneously appearing
+and/or moving obstacles that cross the ASV’s current path.
+The ASV’s real-time ROS-integrated RRT algorithm being
+run for an arbitrarily drawn, complicated occupancy grid can
+be seen in Fig \ref{ros_path_planning}. Tree nodes can be seen in blue. The ASV
+was only given one second to plan its first move. It used its
+time during the first move to plan its second move, shown in
+red. While the paths generated using this method are safe and
+useful for solving the problem of navigation in the
+competition, the team is actively working on improved
+heuristics for smoothing out the paths.
+
+![The NaviGator ASV’s real-time ROS-integrated RRT algorithm being
+run on an arbitrarily drawn, complicated occupancy grid \label{ros_path_planning}](./fig/ros_path_planning.png)
 
 ### Motion Control
+Since the RRT motion planner uses a
+model of the ASV, in principle it would be possible to employ
+a model-predictive control architecture in which the ASV
+rapidly re-plans from its current state to steer it back onto the
+desired path. However, due to the randomness inherent to the
+RRT itself, such a method did not work well in practice. Thus,
+the team opted to make use of the sequence of states generated
+by the motion planner rather than the inputs to define the
+reference a feedback controller tracks.
+First, a simple manually-tuned full-state feedback PD
+controller was used. Tracking along straight paths was nearly
+perfect with this alone, providing a positional steady-state
+error of less than 0.25 meters. However, along curves, a larger
+positional steady-state error of a few meters would always
+emerge depending on the curvature. Even the introduction of a
+standard integral term did not fix this problem.
+The team figured that this was because an integral of the
+world-frame error alone would only be able to compensate for
+disturbances that are constant in the world-frame. Simulation
+revealed that the sources of the curved motion disturbances
+were centripetal-Coriolis effects and heading-dependent drag
+forces. A more intelligent integrator would be necessary to
+compensate for these state-dependent disturbances. Most
+marine and aerial systems accomplish this by using a model-
+reference adaptive control (MRAC) architecture. A block
+diagram of the MRAC controller used for the ASV is shown in
+Fig \ref{mrac}. In this diagram, y ref is the current state in the sequence
+generated by the motion planner, u is the control effort choice,
+and y is the actual state.
+MRAC works very well on the ASV, bringing steady-state
+error to negligible amounts in all cases without introducing
+oscillations. Additionally, it does not wind-up as much as an
+ordinary integrator when unexpected disturbances are applied,
+such as humans pushing the ASV, since it is trying to adapt
+specifically to drag and inertial effects instead of constant
+external forces.
+Finally, with the controller outputting desired wrenches, the
+last operation needed is to map that wrench to a thrust
+command for each thruster. A surface vehicle would only need
+three thrusters to be holonomic, but with four, the ASV is
+more fault tolerant. This redundancy in the mapping can be
+solved as a regularized least-squares problem by evaluating a
+pseudoinverse [@devarakondaAvoidingCommunicationPrimal2016].
+
+![Block diagram of the MRAC controller used on the NaviGator ASV [@AdaptiveControl2018]\label{mrac}](./fig/mrac.png)
 
 ### Navigation and Odometry
 
@@ -286,19 +378,64 @@ was a Beaglebone cape, but quickly moved to the USB/FPGA
 approach for ease of development and reduced CPU load. The
 current revision of the hardware is shown in Fig 9.
 
+![Current hardware revision of the Sylphase, a student-designed GPS/INS](./fig/gpsins.png)
+
 ### State Machine
+The state machine that is used in solving
+the challenges uses a directed acyclic graph (DAG) to decide
+which missions to complete at which time. Each mission is
+first defined by three key attributes: the other missions that it
+depends on, the objects that it depends on, and whether or not
+the mission should be re-executed. For example, the Scan the
+Code challenge does not depend on any other challenges, it
+depends on the Scan the Code object being recognized after it
+is executed, it should not be re-executed after it is completed.
+The state machine is constantly listening for new objects to be
+found. Once one is found, it goes to the parent missions in the
+DAG and evaluates if they are ready to be completed. If one of
+these missions is ready, it is executed. Once it is complete, the
+DAG is reevaluated for more missions to be complete. This
+continues until all missions are complete.
 
 # Design Strategy
+One of the most difficult tasks in developing autonomous vehicles is the detection and recognition of objects, which is then passed down to higher level decision planning. In the past, our team would develop custom and traditional computer vision algorithms for object recognition, however this requires hours of developoment time, and often results in complex solutions with mediocre reliablity. As such, we have integrated deep neural networks as an initial guess framework, and developed a pipeline to quickly train and test the network. This has resulted in a faster debugging process, and created a central framework for which many design decision evolved from. 
 
-## Find Totems and Avoid Obstacles
+## Deep Neural Networks
+Machine learning has become one of the integral components for perception solutions on all our projects. The ability of machine learning to quickly give us a targeted region of interest without having to craft a traditional computer vision solution has drastically cut down on development time for our systems. Due to our increasing usage of neural networks, efforts were made to develop a fully featured development pipeline for the purpose of training and deploying neural networks for computer vision or perception related tasks. To accomplish this, we employed the Tensorflow Object Detection library which was custom compiled to work with CUDA 10 and the new NVIDIA tensorcore architecture. We used the Labelbox labelling tool to handle all of the manual data processing. 
 
-## Identify Symbols and Dock
+### Data Handling
+One of the well known drawbacks of deep neural networks is the tremendous data requirements for achieving any semblance of accuracy in object detection. To combat this, we utilized a tactic called transfer learning. Transfer learning is the process of taking a network that was trained on a separate dataset (for our purposes this was most commonly the COCO dataset) and retraining the final layers of the network on our own datasets. This takes advantage of the fact that the majority of the neural network is taken up by general shape and color differentiation. The majority of the data requirement is due to these early and middle network layers being trained to differentiate shapes. Once the shapes are learned, only a small amount of data is required for learning the finer details. It is only in the final layers of a neural network that the finer details of an object are discerned and analyzed. Thus we targeted these layers for retraining and held the other layers to be constant. This reduced the number of training images required for each network down from potentially tens of thousands of images to a couple hundred. 
 
-## Scan The Code
+With this in mind, during our weekly testing days, we recorded footage of design objects with the mounted cameras on NaviGator from many different angles and in a myriad of lighting and weather conditions. The ROS bags containing this camera footage was processed and segmented out, so anyone who wishes can access and download the images generated from them. This is publically available for any team to use if they find it useful, as is the code for the pipeline. Note that at this stage the data is not labelled however. Deep neural networks require that we have ground truth labels in order for the network to actually learn anything. We employed Labelbox for this purpose, as it allowed for collaborative labelling, so multiple members of the team could process the same dataset. This sped up the process considerably. 
+
+Once the data is labelled it must be downloaded and processed into a format that Tensorflow recognizes and can use. Additionally due to flaws in the Labelbox software, some of the labels could extend outside of the image bounds or be the size of a single pixel. These ‘broken’ labels could seriously hinder the network’s ability to train off the dataset or cause the training process to crash entirely. Thus arose the MIL Machine Learning Pipeline. 
+
+### Training Networks
+The pipeline was developed using python scripts, docker containers, and a couple bash scripts. The central premise of the pipeline is to download the images directly from Labelbox using the JSON file that can be exported from Labelbox. The images and labels are downloaded as png and xml files respectively. These files are then separated into a 60 40 split for training and testing data respectively. Once broken up, we generate two separate CSV files that arrange the labels into the format required by Tensorflow. At this stage we also perform the error checking on the bounds. We check to ensure that the labels are larger than a given area we define and that the labels do not exceed the bounds of the image itself. Spelling check and label validity are also checked against the specific project needs at this stage. For example, if we are training a network to analyze totems and buoys, we will toss out labels and images only containing the docks. 
+Once the data is processed, it is compiled by Tensorflow into TFRecords. These records combine both the images and the labels into a binary file that can be handled more easily by Tensorflow itself. This is what is loaded into the actual training script. The files we generate previously are then cleaned up automatically if desired. If not the generated files are left and can be used to validate the integrity of the dataset through a separate script which visualizes the labels using OpenCV. At this stage the user will select a pretrained model that fits their needs. We found the COCO dataset to be adequate for our purposes and downloaded the architecture that had a good balance of accuracy and speed, as we require real time object identification. There are plenty of options available at the Tensorflow Model Zoo, part of their Object Detection repository on github. 
+After selecting a model, you can need to make some edits to it’s configuration file so that the model knows where to load its training and testing data from. There are a variety of other options that can be useful to change and tweak to give better accuracy but this is dependent on the model choice. The docker image now comes into play. Launching the pipeline script we created spins up a docker image that contains all the necessary software prerequisites for Tensorflow and compiles it from source. This avoids requiring the user of our pipeline to download the repository locally and install the myriad of dependencies required therein. With this done one can easily train any network from the model zoo and with any dataset they desire. The output will be a fully trained network with a frozen inference graph that can be used on any system running a compatible version of Tensorflow. 
+
+### Perception Application
+Now that we have a trained network, we employ a manager that spins up processes. Each processes is devoted to a specific challenge, but the code within is in essence the same. The process will load the network associated with the challenge and begin processing images fed to it from our cameras. It will then publish a bounding box corresponding to it’s observations. We can set thresholds for confidence levels and size of bounding boxes to further refine our results from this stage and apply more traditional computer vision techniques specific to each challenge, but the bulk of the work is now complete. Machine learning has greatly enhanced and streamlined our solutions to computer vision challenges. All work we have done is available for others to use and modify, and we encourage other teams to explore our process to develop a more robust pipeline and networks to solve the computer vision challenges. 
+
+![Demonstration of classification using a deep neural network](./fig/ML.png)
+
+## Identify Symbol and Dock Challenge
+One particular example that demonstrates the trade-off between reliability and development time is in the Identify Symbol and Dock Challenge. This mission begins by selecting the dock object from the object server, which is easily identified by being the largest connected object on the course. The object server gives the mission a rotated box enclosing the challenge, from which positions estimates of the two dock bays and two racquetball target placards are determined based on the known geometry of the challenge.
+   Next, the AMS approaches each of these 4 points of interest, orienting itself so the symbol is near the center of the camera’s field of view. These images are inputted into the deep learning software to generate the best prediction of the symbol’s shape and color. If this is the correct symbol, the docking or raquetball launching procedure begins.
+   The docking procedure simply sets a new waypoint in the center of the bay, relying on the controller and obstacle avoidance system to reach this goal safely. For launching racquetballs, we found a more complicated feedback loop was required to account for wind, waves, and the drift of both the AMS and the target. A quickly written and efficient computer vision script uses binary thresholding and edge detection to identify the black border around the targets at roughly 10 frames per second. This new position of the target is fed directly into the controller to make small movements to keep the AMS aligned. We intentionally bypass the obstacle avoidance system for these small adjustments for performance. The system constantly compares its real pose to the desired pose, only launching the racquetball when there is a low error.
+
+![Simple traditional computer vision to segment targets](./fig/detect_deliver_target.png)
 
 # Experimental Results
 
 ## Simulator
+
+The first phase for testing new software for NaviGator AMS is simulation. We use a modified version of VMRC, the beta platform for the virtual marine robotics challenge. This simulator uses similar technologies to modern 3D video games to render images for the simulated vision cameras and LIDAR. Every challenge present in RobotX 2018 is modeled in the simulator, allowing each task to be tested independently and in sequential runs similar to the finals of RobotX.
+Architecturally, the simulator uses Gazebo, an open source robotics simulator designed to integrate well with the ROS middleware we use. This allows us to run the exact same software in simulator as on the life platform, as the TCP socket interfaces for hardware (sensors and actuators) are fulfilled by the simulator. We added additional plugins to simulate the protocols of our student designed boards used for the emergency stop, pneumatic actuator, and passive sonar systems. The simulated hardware enables testing the integration of these systems into the higher level software without having physical access to the system.
+Simulation also makes the development of high level decision making programs, known as “missions”, to proceed in parallel to perception software. Developers can optionally run the simulator in ground truth mode to receive perfect information about computer vision targets, nearby obstacles, and the position of the pinger. In this mode we can verify that the logic of the missions is correct (the system moves correctly to complete the challenges) in ideal conditions. This separation of concerns allows the team to test a layer of our autonomy in isolation, which is essential for finding bugs and other design failures.
+
+![Simulated NaviGator ASV in a realistic environment](./fig/sim.png)
 
 ## Field Testing
 
@@ -310,6 +447,9 @@ testing offered real-life environmental factors that simulation
 cannot accurately provide, such as wind and current
 disturbances, various lighting conditions, and inclement
 weather.
+
+![Photo of NaviGator during lake testing](./fig/navigator_ams.jpg)
+
 Field testing also offered a chance to test the mechanical
 systems of the ASV, such as actuators like the racquetball
 launcher, the strength of team-manufactured components, and
@@ -341,11 +481,34 @@ easy assembly and disassembly. Buoyancy was provided by
 foam sheets and pool noodles fitted around the PVC pipes.
 The simplicity and light weight of the course elements allowed
 for quick and easy setup and teardown of the course using
-only a few team members in a kayak. As an example, the
-Identify Symbols and Dock platform that the team constructed
-and used for testing can be seen in Fig 13.
+only a few team members in a kayak.
+
+# Conclusion
+This paper presents the University of Florida’s autonomous
+surface vehicle, NaviGator ASV, for use in the 2016 Maritime
+RobotX Challenge. Sacrificing speed for maneuverability, the
+vessel’s four thrusters give the ASV an additional degree of
+freedom when compared to traditional skid-steer vessels. The
+novel use of an automotive cargo box for housing electronics
+created an open layout design that allowed for easy access and
+rapid repairs. An iterative approach and deep neural network pipeline created a strong software
+foundation that was exhaustively tested with over 130 hours of
+in-water testing. Team NaviGator AMS is ready for the 2018
+Maritime RobotX Challenge due to extensively tested
+software, simple mechanical design, and robust electronics.
 
 # Acknowledgement
+Team NaviGator AMS would like to acknowledge everyone
+who has supported the team throughout the year, including the
+University of Florida’s Herbert Wertheim College of
+Engineering, the Electrical and Computer Engineering
+department, the Mechanical and Aerospace Engineering
+department, as well as the labs of MIL and CIMAR. The team
+would like to extend an appreciative thank you to their
+advisers: Dr. Eric Schwartz, Dr. Carl Crane, Dr. Ira Hill, and
+Shannon Ridgeway.
+The latest Team NaviGator AMS developments can be
+found at [www.NaviGatorUF.org](www.NaviGatorUF.org).
 
 # References
 

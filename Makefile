@@ -1,5 +1,5 @@
 ieee:
-	pandoc -o NaviGator_paper.pdf -s -f markdown+raw_tex --template=template.latex NaviGator_paper.md
+	pandoc -o NaviGator_paper.pdf --bibliography=bibliography.bib --csl=bibliography.csl -s -f markdown+raw_tex --template=template.latex NaviGator_paper.md
 paper:
 	pandoc -f markdown+raw_tex --variable classoption=twocolumn --variable papersize=a4paper -s NaviGator_paper.md -o Navigator_paper.pdf
 
