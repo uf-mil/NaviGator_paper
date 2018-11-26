@@ -427,6 +427,17 @@ One particular example that demonstrates the trade-off between reliability and d
 
 ![Simple traditional computer vision to segment targets](./fig/detect_deliver_target.png)
 
+## Pinger
+The NaviGator ASV uses intersecting lines to determine the location of the active pinger, as shown in Fig. \ref{pinger-lst}. In order to find the pinger, the ASV’s thrusters are first disabled. This helps to reduce the noise in readings. Lobs will be collected over time while the ASV drifts. A queue of lobs is accumulated, and once enough lobs are present, a point will be estimated. In order to make this estimate, we first must filter our lobs. The first filter detects lobs that are captured without much movement of the boat. These lobs have starting points very close to each other and tend to provide little useful in terms of their intersections. Next, intersection points are calculated for each lob. Any lobs that have many intersection points close to their origin are thrown out. This prevents noisy or bad readings from pulling the estimated point closer to the boat than it should be. Finally, an intersection estimate is calculated from the remaining lobs using a least-squares approach.
+
+![An illustration of the intersecting method. The red line indicates the drifting of the ASV. The other arrows represent the lobs collected by the hydrophones. The black lines have been filtered out and are disregarded. The red circles highlight the intersecting points that are too close to the ASV. The orange dot represents the position estimate of the pinger. \label{pinger-lst}](./fig/lst-sqrs-pinger.png)
+
+### Entrance/Exit Gates Task
+For the Entrance and Exit Gates task, NaviGator ASV starts by identifying each of the four relevant buoys from the classification server. NaviGator ASV then navigates to a position directly in front of the gates. Next, NaviGator ASV disables the thrusters. This provides time for the previously described pinger location estimation to collect data. After a fixed amount of time, NaviGator ASV enables its thrusters and navigates through the gate whose center is closest to the estimated pinger location. 
+As a backup, in the case that the collected data is insufficient to estimate the location of the pinger, NaviGator ASV will use the lobs in combination a-priori information about the positioning of the gates. Since NaviGator ASV knows where the gates are bound, we can count how many lobs pass through each gate. The gate with the most lobs is then the gate with the active pinger.
+
+![Path diagram illustrating the path NaviGator ASV takes when passing through the Entrance and Exit gates](./fig/entrance-exit-gate.png)
+
 # Experimental Results
 
 ## Simulator
@@ -470,7 +481,8 @@ LIDAR solved the problem. This kind of issue would never
 have arisen during simulation. The detection of this and other
 flaws during testing prevented what would have been
 catastrophic failures during the competition.
-C. Field Element Construction
+
+## Field Element Construction
 In order to take full advantage of the realistic testing
 environment that the lake provides, field elements similar to
 those that will be used in the competition were constructed.
