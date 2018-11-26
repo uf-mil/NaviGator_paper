@@ -3,12 +3,6 @@
 ## Compilation:
 Ensure [pandoc](https://pandoc.org/) is installed.
 ### Generate PDF:
-Without bib:
-`make` or `make paper`
+Run `make` inside the directory.
 
-With bib:
-`make paper-bib`
-
-### Generate LaTeX:
-
-
+This will generates a PDF based off of `NaviGator_paper.md` using `template.latex` and `bibliography.bib` 
